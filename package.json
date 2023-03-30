@@ -1,6 +1,6 @@
 {
   "name": "@devicefarmer/adbkit-apkreader",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "Extracts information from APK files.",
   "keywords": [
     "adb",
