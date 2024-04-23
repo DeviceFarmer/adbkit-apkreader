@@ -28,6 +28,6 @@
     "node": ">= 4"
   },
   "devDependencies": {
-    "eslint": "^8.13.0"
+    "eslint": "^9.1.1"
   }
 }
