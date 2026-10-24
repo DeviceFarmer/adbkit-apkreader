@@ -1,0 +1,227 @@
+{
+  "namespaceURI": null,
+  "nodeType": 1,
+  "nodeName": "manifest",
+  "attributes": [
+    {
+      "namespaceURI": "http://schemas.android.com/apk/res/android",
+      "nodeType": 2,
+      "nodeName": "versionCode",
+      "name": "versionCode",
+      "value": null,
+      "typedValue": {
+        "value": 1,
+        "type": "int_dec",
+        "rawType": 16
+      }
+    },
+    {
+      "namespaceURI": "http://schemas.android.com/apk/res/android",
+      "nodeType": 2,
+      "nodeName": "versionName",
+      "name": "versionName",
+      "value": "1.0",
+      "typedValue": {
+        "value": "1.0",
+        "type": "string",
+        "rawType": 3
+      }
+    },
+    {
+      "namespaceURI": null,
+      "nodeType": 2,
+      "nodeName": "package",
+      "name": "package",
+      "value": "com.example.hello.helloapp.app",
+      "typedValue": {
+        "value": "com.example.hello.helloapp.app",
+        "type": "string",
+        "rawType": 3
+      }
+    }
+  ],
+  "childNodes": [
+    {
+      "namespaceURI": null,
+      "nodeType": 1,
+      "nodeName": "uses-sdk",
+      "attributes": [
+        {
+          "namespaceURI": "http://schemas.android.com/apk/res/android",
+          "nodeType": 2,
+          "nodeName": "minSdkVersion",
+          "name": "minSdkVersion",
+          "value": null,
+          "typedValue": {
+            "value": 7,
+            "type": "int_dec",
+            "rawType": 16
+          }
+        },
+        {
+          "namespaceURI": "http://schemas.android.com/apk/res/android",
+          "nodeType": 2,
+          "nodeName": "targetSdkVersion",
+          "name": "targetSdkVersion",
+          "value": null,
+          "typedValue": {
+            "value": 19,
+            "type": "int_dec",
+            "rawType": 16
+          }
+        }
+      ],
+      "childNodes": []
+    },
+    {
+      "namespaceURI": null,
+      "nodeType": 1,
+      "nodeName": "application",
+      "attributes": [
+        {
+          "namespaceURI": "http://schemas.android.com/apk/res/android",
+          "nodeType": 2,
+          "nodeName": "theme",
+          "name": "theme",
+          "value": null,
+          "typedValue": {
+            "value": "resourceId:0x7f0b0000",
+            "type": "reference",
+            "rawType": 1
+          }
+        },
+        {
+          "namespaceURI": "http://schemas.android.com/apk/res/android",
+          "nodeType": 2,
+          "nodeName": "label",
+          "name": "label",
+          "value": null,
+          "typedValue": {
+            "value": "resourceId:0x7f0a000e",
+            "type": "reference",
+            "rawType": 1
+          }
+        },
+        {
+          "namespaceURI": "http://schemas.android.com/apk/res/android",
+          "nodeType": 2,
+          "nodeName": "icon",
+          "name": "icon",
+          "value": null,
+          "typedValue": {
+            "value": "resourceId:0x7f020057",
+            "type": "reference",
+            "rawType": 1
+          }
+        },
+        {
+          "namespaceURI": "http://schemas.android.com/apk/res/android",
+          "nodeType": 2,
+          "nodeName": "debuggable",
+          "name": "debuggable",
+          "value": null,
+          "typedValue": {
+            "value": true,
+            "type": "boolean",
+            "rawType": 18
+          }
+        },
+        {
+          "namespaceURI": "http://schemas.android.com/apk/res/android",
+          "nodeType": 2,
+          "nodeName": "allowBackup",
+          "name": "allowBackup",
+          "value": null,
+          "typedValue": {
+            "value": true,
+            "type": "boolean",
+            "rawType": 18
+          }
+        }
+      ],
+      "childNodes": [
+        {
+          "namespaceURI": null,
+          "nodeType": 1,
+          "nodeName": "activity",
+          "attributes": [
+            {
+              "namespaceURI": "http://schemas.android.com/apk/res/android",
+              "nodeType": 2,
+              "nodeName": "label",
+              "name": "label",
+              "value": null,
+              "typedValue": {
+                "value": "resourceId:0x7f0a000e",
+                "type": "reference",
+                "rawType": 1
+              }
+            },
+            {
+              "namespaceURI": "http://schemas.android.com/apk/res/android",
+              "nodeType": 2,
+              "nodeName": "name",
+              "name": "name",
+              "value": "com.example.hello.helloapp.app.MainActivity",
+              "typedValue": {
+                "value": "com.example.hello.helloapp.app.MainActivity",
+                "type": "string",
+                "rawType": 3
+              }
+            }
+          ],
+          "childNodes": [
+            {
+              "namespaceURI": null,
+              "nodeType": 1,
+              "nodeName": "intent-filter",
+              "attributes": [],
+              "childNodes": [
+                {
+                  "namespaceURI": null,
+                  "nodeType": 1,
+                  "nodeName": "action",
+                  "attributes": [
+                    {
+                      "namespaceURI": "http://schemas.android.com/apk/res/android",
+                      "nodeType": 2,
+                      "nodeName": "name",
+                      "name": "name",
+                      "value": "android.intent.action.MAIN",
+                      "typedValue": {
+                        "value": "android.intent.action.MAIN",
+                        "type": "string",
+                        "rawType": 3
+                      }
+                    }
+                  ],
+                  "childNodes": []
+                },
+                {
+                  "namespaceURI": null,
+                  "nodeType": 1,
+                  "nodeName": "category",
+                  "attributes": [
+                    {
+                      "namespaceURI": "http://schemas.android.com/apk/res/android",
+                      "nodeType": 2,
+                      "nodeName": "name",
+                      "name": "name",
+                      "value": "android.intent.category.LAUNCHER",
+                      "typedValue": {
+                        "value": "android.intent.category.LAUNCHER",
+                        "type": "string",
+                        "rawType": 3
+                      }
+                    }
+                  ],
+                  "childNodes": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
