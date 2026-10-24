@@ -23,14 +23,16 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
+          cache: npm
 
-      # No lockfile is committed, so npm ci has nothing to install from.
       - name: Install
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
-      # Plain JavaScript, so there is nothing to compile.
       - name: Lint
         run: npm run lint
+
+      - name: Compile
+        run: npm run compile
 
       - name: Test
         run: npm test

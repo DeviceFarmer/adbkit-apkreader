@@ -1,0 +1,76 @@
+{
+  "versionCode": 1,
+  "versionName": "1.0",
+  "package": "com.example.hello.helloapp.app",
+  "usesPermissions": [],
+  "permissions": [],
+  "permissionTrees": [],
+  "permissionGroups": [],
+  "instrumentation": null,
+  "usesSdk": {
+    "minSdkVersion": 7,
+    "targetSdkVersion": 19
+  },
+  "usesConfiguration": null,
+  "usesFeatures": [],
+  "supportsScreens": null,
+  "compatibleScreens": [],
+  "supportsGlTextures": [],
+  "application": {
+    "theme": "resourceId:0x7f0b0000",
+    "label": "resourceId:0x7f0a000e",
+    "icon": "resourceId:0x7f020057",
+    "debuggable": true,
+    "allowBackup": true,
+    "activities": [
+      {
+        "label": "resourceId:0x7f0a000e",
+        "name": "com.example.hello.helloapp.app.MainActivity",
+        "intentFilters": [
+          {
+            "actions": [
+              {
+                "name": "android.intent.action.MAIN"
+              }
+            ],
+            "categories": [
+              {
+                "name": "android.intent.category.LAUNCHER"
+              }
+            ],
+            "data": []
+          }
+        ],
+        "metaData": []
+      }
+    ],
+    "activityAliases": [],
+    "launcherActivities": [
+      {
+        "label": "resourceId:0x7f0a000e",
+        "name": "com.example.hello.helloapp.app.MainActivity",
+        "intentFilters": [
+          {
+            "actions": [
+              {
+                "name": "android.intent.action.MAIN"
+              }
+            ],
+            "categories": [
+              {
+                "name": "android.intent.category.LAUNCHER"
+              }
+            ],
+            "data": []
+          }
+        ],
+        "metaData": []
+      }
+    ],
+    "leanbackLauncherActivities": [],
+    "services": [],
+    "receivers": [],
+    "providers": [],
+    "usesLibraries": []
+  }
+}
