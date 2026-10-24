@@ -1,5 +1,33 @@
 # Changelog
 
+## 3.2.4 (2023-03-30)
+
+### Enhancements
+
+* `ApkReader.open()` also accepts a `Buffer` with the APK contents. Thanks @shenX-2021!
+
+## 3.2.3 (2021-06-29)
+
+### Enhancements
+
+* The parsed manifest lists Android TV launcher activities and activity aliases in `application.leanbackLauncherActivities`. Thanks @gshah30!
+
+### Fixes
+
+* Updated `debug` to 4.3.
+
+## 3.2.2 (2020-09-22)
+
+### Fixes
+
+* Updated `debug` to 4.2.
+
+## 3.2.1 (2020-08-28)
+
+### Changes
+
+* Published as `@devicefarmer/adbkit-apkreader`, with the repository and issue links moved to DeviceFarmer.
+
 ## 3.2.0 (2020-02-06)
 
 ### Fixes
