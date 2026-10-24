@@ -15,9 +15,13 @@
   },
   "license": "Apache-2.0",
   "main": "./index",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node --test test/*.test.js"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeviceFarmer/adbkit-apkreader.git"
+    "url": "git+https://github.com/DeviceFarmer/adbkit-apkreader.git"
   },
   "dependencies": {
     "bluebird": "^3.4.7",
