@@ -4,14 +4,14 @@
 
 ## Requirements
 
-* [Node.js](http://nodejs.org/) 4.x or newer. Older versions are not supported.
+* [Node.js](https://nodejs.org/) 22 or newer. Older versions are not supported.
 
 ## Getting started
 
 Install via NPM:
 
 ```bash
-npm install --save adbkit-apkreader
+npm install --save @devicefarmer/adbkit-apkreader
 ```
 
 ### Examples
@@ -20,14 +20,30 @@ npm install --save adbkit-apkreader
 
 ```javascript
 const util = require('util')
-const ApkReader = require('adbkit-apkreader')
+const ApkReader = require('@devicefarmer/adbkit-apkreader')
 
 ApkReader.open('HelloApp.apk')
   .then(reader => reader.readManifest())
   .then(manifest => console.log(util.inspect(manifest, { depth: null })))
 ```
 
+#### TypeScript
+
+The package ships its own type declarations. The shapes of the parsed results are exported on the `ApkReader` namespace:
+
+```typescript
+import ApkReader from '@devicefarmer/adbkit-apkreader'
+
+const reader = await ApkReader.open('HelloApp.apk')
+const manifest: ApkReader.Manifest = await reader.readManifest()
+console.log(manifest.package, manifest.application.launcherActivities)
+```
+
+With `esModuleInterop` off, use `import ApkReader = require('@devicefarmer/adbkit-apkreader')` instead. Other exported types include `ApkReader.XmlElement`, `ApkReader.TypedValue` and `ApkReader.Attributes`.
+
 ## API
+
+Every method that returns a `Promise` returns a native one. Versions 3.x and earlier returned [Bluebird](http://bluebirdjs.com/) promises; if you relied on Bluebird-only methods such as `.timeout()`, `.tap()` or `.return()`, wrap the result with `Bluebird.resolve()` or use the native equivalents.
 
 ### ApkReader
 
@@ -37,11 +53,11 @@ A convenience constant with the value `'AndroidManifest.xml'`. Can use useful wi
 
 #### ApkReader.open(file)
 
-Alternate syntax to manually creating an ApkReader instance. Currently, only files are supported, but support for streams might be added at some point.
+Alternate syntax to manually creating an ApkReader instance. Files and `Buffer`s are supported, but support for streams might be added at some point.
 
 Note that currently this method cannot reject as the file is opened lazily, but this may change in the future and therefore returns a Promise for fewer future compatibility issues. On a related node, calling the constructor directly is still possible, but discouraged.
 
-* **file** The path to the APK file.
+* **file** The path to the APK file, or a `Buffer` with its contents.
 * Returns: A `Promise` that resolves with an `ApkReader` instance.
 
 #### reader.readContent(path)
@@ -51,10 +67,12 @@ Reads the content of the given file inside the APK.
 * **path** The path to the file. For example, giving `'META-INF/MANIFEST.MF'` as the path would read the content of that file.
 * Returns: A `Promise` that resolves with a `Buffer` containing the full contents of the file.
 
-#### reader.readManifest()
+#### reader.readManifest([options])
 
 Reads and parses the `AndroidManifest.xml` file inside the APK and returns a simplified object representation of it.
 
+* **options** Optional. An `Object` with the following properties:
+    - **debug** If `true`, logs every read of the binary XML parser to the console. Defaults to `false`.
 * Returns: A `Promise` that resolves with a JavaScript `Object` representation of the manifest. See example output below. Rejects on error (e.g. if parsing was unsuccessful).
 
 ```javascript
@@ -101,11 +119,12 @@ Reads and parses the `AndroidManifest.xml` file inside the APK and returns a sim
      usesLibraries: [] } }
 ```
 
-#### reader.readXml(path)
+#### reader.readXml(path[, options])
 
 Reads and parses the binary XML file at the given path inside the APK file. Attempts to be somewhat compatible with the DOM API.
 
 * **path** The path to the binary XML file inside the APK. For example, giving `'AndroidManifest.xml'` as the path would parse the manifest (but you'll probably want to use `reader.readManifest()` instead).
+* **options** Optional. The same options as `reader.readManifest()`.
 * Returns: A `Promise` that resolves with a JavaScript `Object` representation of the root node of the XML file. All nodes including the root node have the properties listed below. Rejects on error (e.g. if parsing was unsuccessful).
     - **namespaceURI** The namespace URI or `null` if none.
     - **nodeType** `1` for element nodes, `2` for attribute nodes, and `4` for CData sections.
@@ -147,7 +166,7 @@ The package is published to npm as [`@devicefarmer/adbkit-apkreader`](https://ww
 
 1. Run `Prepare release` with the version as input, for example `3.2.5`. It bumps `package.json`, writes the `CHANGELOG.md` section from GitHub's generated notes, and pushes `release/v3.2.5`. It writes nothing to `master`.
 2. Open the pull request it links to in the job summary, label it `ignore-for-release`, and merge it once the checks pass.
-3. Run `Release` on `master` with the same version. It tags `v3.2.5`, publishes the GitHub release with the notes from `CHANGELOG.md`, then builds, tests and publishes the package to npm with trusted publishing (OIDC), so no npm token is stored anywhere.
+3. Run `Release` on `master` with the same version. It tags `v3.2.5`, publishes the GitHub release with the notes from `CHANGELOG.md`, then compiles the TypeScript, tests and publishes the package to npm with trusted publishing (OIDC), so no npm token is stored anywhere.
 
 The bump goes through a pull request because `master` is protected. `Release` refuses to run on any branch but `master`, so an unmerged `release/v*` branch cannot be published.
 

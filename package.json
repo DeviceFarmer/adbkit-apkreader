@@ -15,23 +15,42 @@
   },
   "license": "Apache-2.0",
   "main": "./index",
-  "scripts": {
-    "lint": "eslint .",
-    "test": "node --test test/*.test.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DeviceFarmer/adbkit-apkreader.git"
   },
-  "dependencies": {
-    "bluebird": "^3.4.7",
-    "debug": "~4.3.1",
-    "yauzl": "^2.7.0"
+  "scripts": {
+    "compile": "tsc -p .",
+    "format": "prettier --write . && eslint . --fix",
+    "lint": "eslint . && prettier --check .",
+    "prepublishOnly": "npm run compile && npm run test",
+    "test": "mocha"
   },
-  "engines": {
-    "node": ">= 4"
+  "dependencies": {
+    "debug": "^4.4.3",
+    "yauzl": "^3.4.0"
   },
   "devDependencies": {
-    "eslint": "^8.13.0"
-  }
+    "@eslint/js": "^10.0.1",
+    "@types/debug": "^4.1.13",
+    "@types/node": "^22.20.5",
+    "@types/yauzl": "^3.4.0",
+    "chai": "^6.3.0",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "mocha": "^12.0.3",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.0"
+  },
+  "engines": {
+    "node": ">= 22"
+  },
+  "files": [
+    "/lib/**/*.js",
+    "/lib/**/*.d.ts",
+    "/index.js",
+    "/index.d.ts"
+  ],
+  "types": "./index.d.ts"
 }
