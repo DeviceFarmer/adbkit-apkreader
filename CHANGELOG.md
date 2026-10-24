@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.0 (2026-10-24)
+
+* feat!: convert to TypeScript with native promises by @koral-- in https://github.com/DeviceFarmer/adbkit-apkreader/pull/51
+* chore(deps): keep @types/node on the supported Node.js major by @koral-- in https://github.com/DeviceFarmer/adbkit-apkreader/pull/53
+
+**Full Changelog**: https://github.com/DeviceFarmer/adbkit-apkreader/compare/v3.2.4...v4.0.0
+
 ## 3.2.4 (2023-03-30)
 
 ### Enhancements
