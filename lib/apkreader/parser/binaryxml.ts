@@ -199,9 +199,7 @@ class BinaryXmlParser {
     }
 
     const value = this.readU32()
-    // Kept as in the JavaScript version: dimension.value is still null here,
-    // so the unit always comes out as 0 (px).
-    const unit = Number(dimension.value) & 0xff
+    const unit = value & TypedValue.COMPLEX_UNIT_MASK
 
     dimension.value = value >> 8
     dimension.rawUnit = unit
@@ -313,7 +311,7 @@ class BinaryXmlParser {
         break
       case TypedValue.TYPE_STRING: {
         const ref = this.readS32()
-        typedValue.value = ref > 0 ? this.strings[ref] : ''
+        typedValue.value = ref >= 0 ? this.strings[ref] : ''
         typedValue.type = 'string'
         break
       }
@@ -511,8 +509,8 @@ and is supposed to end at offset ${end}. Ignoring the rest of the value.`)
     // We don't currently care about the values, but they could
     // be accessed like so:
     //
-    // namespaceURI.prefix = this.strings[prefixRef] // if prefixRef > 0
-    // namespaceURI.uri = this.strings[uriRef] // if uriRef > 0
+    // namespaceURI.prefix = this.strings[prefixRef] // if prefixRef >= 0
+    // namespaceURI.uri = this.strings[uriRef] // if uriRef >= 0
 
     if (this.debug) console.groupEnd()
 
@@ -530,8 +528,8 @@ and is supposed to end at offset ${end}. Ignoring the rest of the value.`)
     // We don't currently care about the values, but they could
     // be accessed like so:
     //
-    // namespaceURI.prefix = this.strings[prefixRef] // if prefixRef > 0
-    // namespaceURI.uri = this.strings[uriRef] // if uriRef > 0
+    // namespaceURI.prefix = this.strings[prefixRef] // if prefixRef >= 0
+    // namespaceURI.uri = this.strings[uriRef] // if uriRef >= 0
 
     if (this.debug) console.groupEnd()
 
@@ -555,7 +553,7 @@ and is supposed to end at offset ${end}. Ignoring the rest of the value.`)
     const nsRef = this.readS32()
     const nameRef = this.readS32()
 
-    if (nsRef > 0) {
+    if (nsRef >= 0) {
       node.namespaceURI = this.strings[nsRef]
     }
 
@@ -603,13 +601,13 @@ and is supposed to end at offset ${end}. Ignoring the rest of the value.`)
     const nameRef = this.readS32()
     const valueRef = this.readS32()
 
-    if (nsRef > 0) {
+    if (nsRef >= 0) {
       attr.namespaceURI = this.strings[nsRef]
     }
 
     attr.nodeName = attr.name = this.strings[nameRef]
 
-    if (valueRef > 0) {
+    if (valueRef >= 0) {
       attr.value = this.strings[valueRef]
     }
 
@@ -652,7 +650,7 @@ and is supposed to end at offset ${end}. Ignoring the rest of the value.`)
     /* const commentRef = */ this.readU32()
     const dataRef = this.readS32()
 
-    if (dataRef > 0) {
+    if (dataRef >= 0) {
       cdata.data = this.strings[dataRef]
     }
 

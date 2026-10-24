@@ -1,4 +1,4 @@
-import BinaryXmlParser from './binaryxml'
+import BinaryXmlParser = require('./binaryxml')
 import type {
   Application,
   Attributes,
@@ -7,8 +7,7 @@ import type {
   Manifest,
   ParserOptions,
   Provider,
-  XmlElement,
-  XmlNode
+  XmlElement
 } from '../types'
 
 // const NS_ANDROID = 'http://schemas.android.com/apk/res/android'
@@ -16,9 +15,9 @@ const INTENT_MAIN = 'android.intent.action.MAIN'
 const CATEGORY_LAUNCHER = 'android.intent.category.LAUNCHER'
 const CATEGORY_LEANBACK_LAUNCHER = 'android.intent.category.LEANBACK_LAUNCHER'
 
-// Only elements reach the switches below, so the CDATA nodes that share
-// childNodes with them are never collapsed.
-const children = (element: XmlElement) => element.childNodes as XmlElement[]
+// Skips the CDATA nodes that share childNodes with the elements.
+const children = (element: XmlElement) =>
+  element.childNodes.filter((node): node is XmlElement => node.nodeType === 1)
 
 class ManifestParser {
   buffer: Buffer
@@ -29,9 +28,9 @@ class ManifestParser {
     this.xmlParser = new BinaryXmlParser(this.buffer, options)
   }
 
-  collapseAttributes(element: XmlNode): Attributes {
+  collapseAttributes(element: XmlElement): Attributes {
     const collapsed: Attributes = Object.create(null)
-    for (const attr of Array.from((element as XmlElement).attributes)) {
+    for (const attr of Array.from(element.attributes)) {
       collapsed[attr.name] = attr.typedValue.value
     }
     return collapsed

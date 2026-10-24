@@ -49,7 +49,7 @@ describe('ApkReader', () => {
     // Also covers the key order, which deep equality ignores.
     expect(JSON.stringify(manifest, null, 2) + '\n').to.equal(expected)
     // Collapsed attributes are objects without a prototype.
-    const activity = manifest.application.activities[0]
+    const activity = manifest.application.activities![0]
     for (const object of [
       manifest,
       manifest.usesSdk,

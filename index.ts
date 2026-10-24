@@ -1,3 +1,3 @@
-import ApkReader from './lib/apkreader'
+import ApkReader = require('./lib/apkreader')
 
 export = ApkReader

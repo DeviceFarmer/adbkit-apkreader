@@ -15,7 +15,16 @@ export default tseslint.config(
   js.configs.recommended,
   {
     files: ['**/*.ts', '**/*.mts'],
-    extends: [tseslint.configs.recommended]
+    extends: [tseslint.configs.recommended],
+    rules: {
+      // Modules that use export = are imported with import = require() where
+      // the import ends up in a declaration file, so consumers can read the
+      // declarations without esModuleInterop.
+      '@typescript-eslint/no-require-imports': [
+        'error',
+        { allowAsImport: true }
+      ]
+    }
   },
   {
     files: ['test/**/*.mts'],

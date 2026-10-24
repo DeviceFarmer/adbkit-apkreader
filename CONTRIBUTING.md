@@ -13,11 +13,11 @@ We are happy to accept any contributions that make sense and respect the rules l
 
 ## Development
 
-You need [Node.js](https://nodejs.org/) 22 or newer. Install the dependencies from the lockfile with `npm ci`.
+You need [Node.js](https://nodejs.org/) 22.18 or newer, the first 22.x that strips types from the `.mts` tests by default. The published package itself runs on any Node.js 22. Install the dependencies from the lockfile with `npm ci`.
 
 * The sources are TypeScript (`index.ts` and `lib/**/*.ts`). `npm run compile` compiles them to CommonJS `.js` files with `.d.ts` declarations next to them. The compiled files are not committed.
-* The tests are ESM `.mts` files in `test/`, run by [Mocha](https://mochajs.org/) with [Chai](https://www.chaijs.com/) through Node's built-in type stripping. They import the compiled `.js` files, so compile before running `npm test`.
-* `npm run lint` runs [ESLint](https://eslint.org/) with typescript-eslint and checks the formatting with [Prettier](https://prettier.io/). `npm run format` fixes what it can.
+* The tests are ESM `.mts` files in `test/`, run by [Mocha](https://mochajs.org/) with [Chai](https://www.chaijs.com/) through Node's built-in type stripping. They import the compiled `.js` files, so `npm test` compiles first.
+* `npm run lint` runs [ESLint](https://eslint.org/) with typescript-eslint checks the formatting with [Prettier](https://prettier.io/) and type-checks the tests against the sources. `npm run format` fixes what it can.
 * `test/fixt/*.json` are snapshots of the parsed fixture APK. If you change the parser's output on purpose, regenerate them and explain the change in the pull request.
 
 ## Rules

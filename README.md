@@ -36,7 +36,8 @@ import ApkReader from '@devicefarmer/adbkit-apkreader'
 
 const reader = await ApkReader.open('HelloApp.apk')
 const manifest: ApkReader.Manifest = await reader.readManifest()
-console.log(manifest.package, manifest.application.launcherActivities)
+// application has no lists when the manifest has no <application> element.
+console.log(manifest.package, manifest.application.launcherActivities ?? [])
 ```
 
 With `esModuleInterop` off, use `import ApkReader = require('@devicefarmer/adbkit-apkreader')` instead. Other exported types include `ApkReader.XmlElement`, `ApkReader.TypedValue` and `ApkReader.Attributes`.

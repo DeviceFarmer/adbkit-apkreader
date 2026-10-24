@@ -163,6 +163,7 @@ declare namespace ApkReader {
   export type ParserOptions = Types.ParserOptions
   export type Manifest = Types.Manifest
   export type Application = Types.Application
+  export type EmptyApplication = Types.EmptyApplication
   export type Component = Types.Component
   export type Provider = Types.Provider
   export type IntentFilter = Types.IntentFilter

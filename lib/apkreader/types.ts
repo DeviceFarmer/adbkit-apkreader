@@ -91,8 +91,7 @@ export type Provider = Element<{
   pathPermissions: Attributes[]
 }>
 
-/** Empty when the manifest has no `<application>` element. */
-export type Application = Element<{
+interface ApplicationChildren {
   activities: Component[]
   activityAliases: Component[]
   launcherActivities: Component[]
@@ -101,7 +100,15 @@ export type Application = Element<{
   receivers: Component[]
   providers: Provider[]
   usesLibraries: Attributes[]
-}>
+}
+
+/** A parsed `<application>` element. */
+export type Application = Element<ApplicationChildren>
+
+/** What `Manifest.application` is when the manifest has no `<application>`. */
+export type EmptyApplication = Record<string, unknown> & {
+  [K in keyof ApplicationChildren]?: undefined
+}
 
 /**
  * The attributes of `<manifest>` (`package`, `versionCode`, `versionName` and
@@ -109,7 +116,8 @@ export type Application = Element<{
  */
 export type Manifest = Element<{
   package: string
-  versionCode?: number
+  /** A string such as `'resourceId:0x7f0b0001'` for a resource reference. */
+  versionCode?: number | string
   versionName?: string
   usesPermissions: Attributes[]
   permissions: Attributes[]
@@ -122,5 +130,5 @@ export type Manifest = Element<{
   supportsScreens: Attributes | null
   compatibleScreens: Attributes[]
   supportsGlTextures: Attributes[]
-  application: Application
+  application: Application | EmptyApplication
 }>
